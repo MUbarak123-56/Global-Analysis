@@ -14,3 +14,6 @@ Here are some platforms that will be used to analyze and explore the datasets to
 * Mubarak Ganiyu
   - Incoming Graduate Student, Vanderbilt University Data Science Institute 
   - mubarak.a.ganiyu@vanderbilt.edu
+* Kenneth Konam
+  - Chemical Engineering Student, Vanderbilt University
+  - kenneth.g.konam@vanderbilt.edu
