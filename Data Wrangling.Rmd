@@ -53,8 +53,15 @@ head(econ_free)
 
 ```{r}
 ?full_join
-df_world <- full_join(df_gap, econ_free, by = "country_year")
-write.csv(df_world, "~/Global-Analysis/World_dataset.csv")
+df_world <- inner_join(df_gap, econ_free, by = "country_year")
+df_world <- df_world %>% 
+  select(-c("X", "Name", Index.Year))
+```
+
+### Saving the datasets
+
+```{r}
+write.csv(df_world, "~/Global-Analysis/New_world.csv")
 ```
 
 
