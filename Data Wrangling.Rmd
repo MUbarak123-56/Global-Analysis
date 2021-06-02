@@ -1,0 +1,60 @@
+---
+title: "Data Wrangling"
+output: pdf_document
+---
+
+# Data Wrangling
+This document showcases how the datasets are wrangled to improve the depth of the variables.
+
+### Load tidyverse
+
+```{r}
+library(tidyverse)
+```
+
+### Load datasets
+
+```{r, load-data}
+econ_free <- read.csv("~/Global-Analysis/Economic_Freedom_data.csv")
+df_gap <- read.csv("~/Global-Analysis/new_gapminder.csv")
+```
+
+## Combining Datasets
+
+### Rearrange gapminder
+
+```{r}
+df_gap$char <- as.character(df_gap$year)
+df_gap$newcountry <- df_gap$country
+df_gap <- df_gap %>% 
+  unite("country_year", c(newcountry, char), sep = ", ")
+```
+
+### Checking out gapminder dataset
+
+```{r}
+head(df_gap)
+```
+### Rearranging the economic index dataset
+
+```{r}
+econ_free$char <- as.character(econ_free$Index.Year)
+econ_free$newcountry <- econ_free$Name
+econ_free <- econ_free %>% 
+  unite("country_year", c(newcountry, char), sep = ", ")
+```
+
+### Checking out the dataset
+
+```{r}
+head(econ_free)
+```
+### Joining the two datasets
+
+```{r}
+?full_join
+df_world <- full_join(df_gap, econ_free, by = "country_year")
+write.csv(df_world, "~/Global-Analysis/World_dataset.csv")
+```
+
+
