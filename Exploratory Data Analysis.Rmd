@@ -1,0 +1,226 @@
+---
+title: "Exploratory Data Analysis"
+output: pdf_document
+---
+
+# Exploratory Data Analysis
+
+This is a document for exploring the global indicator dataset that was extracted from the combination of numerous datasets
+
+### Loading packages and dataset
+
+The tidyverse package was loaded below.
+
+```{r}
+library(tidyverse)
+```
+
+The dataset is loaded below
+
+```{r}
+df_world <- read.csv("~/Global-Analysis/Global_data.csv")
+```
+
+### Data Comprehension
+
+The datasets was reviewed below to improve our understanding of the dataset
+
+```{r}
+head(df_world)
+colnames(df_world)
+```
+
+Structure of the dataset
+```{r}
+str(df_world)
+```
+
+Renaming certain columns
+```{r}
+df_world <- df_world %>%
+  rename(c(Overall_Score = Overall.Score, 
+           Life_Expectancy = Life.Expectancy,
+           Government_Integrity = Government.Integrity,
+           Government_Spending = Government.Spending,
+           Property_Rights = Property.Rights,
+           Fiscal_Health = Fiscal.Health,
+           Business_Freedom = Business.Freedom,
+           Monetary_Freedom = Monetary.Freedom,
+           Trade_Freedom = Trade.Freedom,
+           Investment_Freedom = Investment.Freedom,
+           Financial_Freedom = Financial.Freedom,
+           Income_Index = Income.Index,
+           Tax_Burden = Tax.Burden,
+           Labor_Freedom = Labor.Freedom,
+           Average_schooling = Average.years.of.Schooling,
+           Expected_schooling = Expected.years.of.Schooling,
+           Education_Index = Education.Index,
+           Human_Development_Index = Human.Development.Index,
+           Judicial_Effectiveness = Judicial.Effectiveness
+           ))
+```
+
+Filtering out information
+
+```{r}
+df_nigeria <- df_world %>% 
+  filter(Country == 'Nigeria') %>%
+  select(Business_Freedom, Year)
+df_nigeria
+```
+
+## Charts
+
+Scatter plot function
+
+```{r}
+## Human Development Index vs Economic Freedom Index
+scatter1 <- function(df, year) {
+  df %>% 
+    filter(Year == year) %>% 
+    ggplot() + 
+    geom_point(aes(x = Overall_Score, 
+                     y = Human_Development_Index, 
+                   color = Continent), na.rm = TRUE) +
+    labs(title = sprintf("Human Development Index vs Economic Freedom Index in %d", year), 
+         x = "Economic Freedom Index",
+         y = "Human Development Index")
+    
+}
+## Education Index vs Economic Freedom Index
+scatter2 <- function(df, year) {
+  df %>% 
+    filter(Year == year) %>% 
+    ggplot() + 
+    geom_point(aes(x = Overall_Score, 
+                   y = Education_Index, 
+                   color = Continent), na.rm = TRUE) +
+    labs(title = sprintf("Education Index vs Economic Freedom Index in %d", year), 
+         x = "Economic Freedom Index",
+         y = "Education Index")
+}
+## Life Expectancy vs Economic Freedom Index
+scatter3 <- function(df, year) {
+  df %>% 
+    filter(Year == year) %>% 
+    ggplot() + 
+    geom_point(aes(x = Overall_Score, 
+                     y = Life_Expectancy, 
+                   color = Continent), na.rm = TRUE) +
+    labs(title = sprintf("Life Expectancy vs Economic Freedom Index in %d", year), 
+         x = "Economic Freedom Index",
+         y = "Life Expectancy")
+}
+## Government Integrity vs Government Spending
+scatter4 <- function(df, year) {
+  df %>% 
+    filter(Year == year) %>% 
+    ggplot() + 
+    geom_point(aes(x = Government_Spending, 
+                     y = Government_Integrity, 
+                   color = Continent), na.rm = TRUE) +
+    labs(title = sprintf("Government Integrity vs Government Spending in %d", year), 
+         x = "Government Spending",
+         y = "Government Integrity")
+}
+```
+
+Human Development Index vs Economic Freedom Index
+
+```{r, fig.width = 9, fig.height = 9}
+scatter1(df_world, 2019)
+```
+
+Education Index vs Economic Freedom Index
+
+```{r, fig.width = 9, fig.height = 9}
+scatter2(df_world, 2019)
+```
+
+Life Expectancy vs Economic Freedom Index
+
+```{r, fig.width = 9, fig.height = 9}
+scatter3(df_world, 2019)
+```
+Government Integrity vs Government Spending
+```{r, fig.width = 12, fig.height=9}
+scatter4(df_world, 2019)
+```
+
+Kernel Density Estimation Plot
+
+Human Development Index
+
+```{r, fig.width = 12, fig.height=9}
+ggplot(df_world) +
+  geom_density(aes(x = Human_Development_Index, 
+                    color = as.character(Year)),
+                show.legend = NA) +
+  labs(title = "How Human Development Index has changed over time")
+```
+
+Economic Freedom Index
+
+```{r, fig.width = 12, fig.height=9}
+ggplot(df_world) +
+  geom_density(aes(x = Overall_Score, 
+                    color = as.character(Year)),
+                show.legend = NA) +
+  labs(title = "How Economic Freedom Index has changed over time")
+```
+
+Box Plot
+
+Continent Disparities for Human Development Index in 2019
+
+```{r, fig.width = 12, fig.height = 9}
+df_world %>% 
+  filter(Year == 2019) %>% 
+  ggplot() + 
+  geom_boxplot(aes(x = Continent, y = Human_Development_Index,
+                   color = Continent)) +
+  labs(title = "How continents differ based on Human Development Index in 2019")
+```
+
+Continent Disparities for Economic Freedom Index in 2019
+
+```{r, fig.width = 12, fig.height = 9}
+df_world %>% 
+  filter(Year == 2019) %>% 
+  ggplot() + 
+  geom_boxplot(aes(x = Continent, y = Overall_Score,
+                   color = Continent)) +
+  labs(title = "How continents differ based on Economic Freedom Index in 2019", 
+       y = "Economic Freedom Index")
+```
+
+Bar Chart
+
+Average schooling years across continents
+
+```{r, fig.width= 12, fig.height=9}
+df_world %>% 
+  filter(Year == 2019) %>% 
+  group_by(Continent) %>% 
+  summarize(mean_school = mean(Average_schooling, na.rm = TRUE)) %>% 
+  ggplot() +
+  geom_bar(aes(x = Continent, y = mean_school, 
+               fill = Continent), stat = "identity") +
+  coord_polar() +
+  labs(title = "Average years of schooling across continents", 
+       y = "Average years of schooling")
+```
+Average life expectancy across continents
+
+```{r, fig.width= 12, fig.height=9}
+df_world %>% 
+  filter(Year == 2019) %>% 
+  group_by(Continent) %>% 
+  summarize(mean_life = mean(Life_Expectancy, na.rm = TRUE)) %>% 
+  ggplot() +
+  geom_bar(aes(x = Continent, y = mean_life, 
+               fill = Continent), stat = "identity") +
+  labs(title = "Average years of schooling across continents", 
+       y = "Average years of schooling") +
+  theme_classic()
+```
