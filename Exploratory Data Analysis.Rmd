@@ -220,7 +220,7 @@ df_world %>%
   ggplot() +
   geom_bar(aes(x = Continent, y = mean_life, 
                fill = Continent), stat = "identity") +
-  labs(title = "Average years of schooling across continents", 
-       y = "Average years of schooling") +
+  labs(title = "Average life expectancy across continents", 
+       y = "Average life expectancy") +
   theme_classic()
 ```
