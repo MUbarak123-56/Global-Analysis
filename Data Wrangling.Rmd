@@ -7,13 +7,13 @@ output: pdf_document
 This document showcases how the datasets are wrangled to improve the depth of the variables.
 
 ### Load tidyverse
-
+The tidyverse package was loaded. This package will make it easy to wrangle and clean data.
 ```{r}
 library(tidyverse)
 ```
 
 ### Load datasets
-
+The needed datasets are loaded in the column below.
 ```{r, load-data}
 econ_free <- read.csv("~/Global-Analysis/Economic_Freedom_data.csv")
 df_gap <- read.csv("~/Global-Analysis/new_gapminder.csv")
@@ -21,8 +21,8 @@ df_gap <- read.csv("~/Global-Analysis/new_gapminder.csv")
 
 ## Combining Datasets
 
-### Rearrange gapminder
-
+### Transforming the gapminder dataset
+The cell below shows how gapminder was transformed to create a new column.This column will be used to uniquely identify each country during each year.
 ```{r}
 df_gap$char <- as.character(df_gap$year)
 df_gap$newcountry <- df_gap$country
@@ -35,8 +35,8 @@ df_gap <- df_gap %>%
 ```{r}
 head(df_gap)
 ```
-### Rearranging the economic index dataset
-
+### Transforming the economic indicators index dataset
+The cell below shows how economic indicators dataset was transformed to create a new column.This column will be used to uniquely identify each country during each year.
 ```{r}
 econ_free$char <- as.character(econ_free$Index.Year)
 econ_free$newcountry <- econ_free$Name
@@ -50,12 +50,12 @@ econ_free <- econ_free %>%
 head(econ_free)
 ```
 ### Joining the two datasets
-
+The cell below was used to join the two columns using the newly formed identifier country_year.
 ```{r}
 ?full_join
 df_world <- inner_join(df_gap, econ_free, by = "country_year")
 df_world <- df_world %>% 
-  select(-c("X", "Name", Index.Year))
+  select(-c("Name", Index.Year))
 ```
 
 ### Saving the datasets

@@ -18,7 +18,7 @@ library(tidyverse)
 The dataset is loaded below
 
 ```{r}
-df_world <- read.csv("~/Global-Analysis/Global_data.csv")
+df_world <- read.csv("~/Global-Analysis/World_data.csv")
 ```
 
 ### Data Comprehension
@@ -31,14 +31,16 @@ colnames(df_world)
 ```
 
 Structure of the dataset
+
 ```{r}
 str(df_world)
 ```
 
 Renaming certain columns
+
 ```{r}
 df_world <- df_world %>%
-  rename(c(Overall_Score = Overall.Score, 
+  rename(c(Economic_Freedom_Index = Economic.Freedom.Index, 
            Life_Expectancy = Life.Expectancy,
            Government_Integrity = Government.Integrity,
            Government_Spending = Government.Spending,
@@ -56,7 +58,8 @@ df_world <- df_world %>%
            Expected_schooling = Expected.years.of.Schooling,
            Education_Index = Education.Index,
            Human_Development_Index = Human.Development.Index,
-           Judicial_Effectiveness = Judicial.Effectiveness
+           Judicial_Effectiveness = Judicial.Effectiveness,
+           Free_Market_Class = Free.Market.Class
            ))
 ```
 
@@ -79,7 +82,7 @@ scatter1 <- function(df, year) {
   df %>% 
     filter(Year == year) %>% 
     ggplot() + 
-    geom_point(aes(x = Overall_Score, 
+    geom_point(aes(x = Economic_Freedom_Index, 
                      y = Human_Development_Index, 
                    color = Continent), na.rm = TRUE) +
     labs(title = sprintf("Human Development Index vs Economic Freedom Index in %d", year), 
@@ -92,7 +95,7 @@ scatter2 <- function(df, year) {
   df %>% 
     filter(Year == year) %>% 
     ggplot() + 
-    geom_point(aes(x = Overall_Score, 
+    geom_point(aes(x = Economic_Freedom_Index, 
                    y = Education_Index, 
                    color = Continent), na.rm = TRUE) +
     labs(title = sprintf("Education Index vs Economic Freedom Index in %d", year), 
@@ -104,7 +107,7 @@ scatter3 <- function(df, year) {
   df %>% 
     filter(Year == year) %>% 
     ggplot() + 
-    geom_point(aes(x = Overall_Score, 
+    geom_point(aes(x = Economic_Freedom_Index, 
                      y = Life_Expectancy, 
                    color = Continent), na.rm = TRUE) +
     labs(title = sprintf("Life Expectancy vs Economic Freedom Index in %d", year), 
@@ -163,7 +166,7 @@ Economic Freedom Index
 
 ```{r, fig.width = 12, fig.height=9}
 ggplot(df_world) +
-  geom_density(aes(x = Overall_Score, 
+  geom_density(aes(x = Economic_Freedom_Index, 
                     color = as.character(Year)),
                 show.legend = NA) +
   labs(title = "How Economic Freedom Index has changed over time")
@@ -188,7 +191,7 @@ Continent Disparities for Economic Freedom Index in 2019
 df_world %>% 
   filter(Year == 2019) %>% 
   ggplot() + 
-  geom_boxplot(aes(x = Continent, y = Overall_Score,
+  geom_boxplot(aes(x = Continent, y = Economic_Freedom_Index,
                    color = Continent)) +
   labs(title = "How continents differ based on Economic Freedom Index in 2019", 
        y = "Economic Freedom Index")
@@ -224,3 +227,19 @@ df_world %>%
        y = "Average life expectancy") +
   theme_classic()
 ```
+
+Enhanced scatter plot for Human Development Index vs Economic Freedom Index
+
+```{r, fig.width = 12, fig.height = 8}
+  df_world %>% 
+    filter(Year == 2019) %>% 
+    ggplot() + 
+    geom_point(aes(x = Economic_Freedom_Index, 
+                     y = Human_Development_Index, 
+                   color = Continent), na.rm = TRUE) +
+    facet_grid(Continent ~ Free_Market_Class) +
+    labs(title = sprintf("Human Development Index vs Economic Freedom Index in %d", 2019), 
+         x = "Economic Freedom Index",
+         y = "Human Development Index") 
+```
+
