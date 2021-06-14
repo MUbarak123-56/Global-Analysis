@@ -54,7 +54,6 @@ df_world <- df_world %>%
            Income_Index = Income.Index,
            Tax_Burden = Tax.Burden,
            Labor_Freedom = Labor.Freedom,
-           Average_schooling = Average.years.of.Schooling,
            Expected_schooling = Expected.years.of.Schooling,
            Education_Index = Education.Index,
            Human_Development_Index = Human.Development.Index,
@@ -199,20 +198,6 @@ df_world %>%
 
 Bar Chart
 
-Average schooling years across continents
-
-```{r, fig.width= 12, fig.height=9}
-df_world %>% 
-  filter(Year == 2019) %>% 
-  group_by(Continent) %>% 
-  summarize(mean_school = mean(Average_schooling, na.rm = TRUE)) %>% 
-  ggplot() +
-  geom_bar(aes(x = Continent, y = mean_school, 
-               fill = Continent), stat = "identity") +
-  coord_polar() +
-  labs(title = "Average years of schooling across continents", 
-       y = "Average years of schooling")
-```
 Average life expectancy across continents
 
 ```{r, fig.width= 12, fig.height=9}
