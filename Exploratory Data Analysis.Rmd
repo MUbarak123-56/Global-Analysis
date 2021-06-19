@@ -12,13 +12,14 @@ This is a document for exploring the global indicator dataset that was extracted
 The tidyverse package was loaded below.
 
 ```{r}
+## The tidyverse package was loaded using the command below
 library(tidyverse)
 ```
 
-The dataset is loaded below
+The World_data dataset is loaded below
 
 ```{r}
-df_world <- read.csv("~/Global-Analysis/World_data.csv")
+df_world <- read.csv("~/Global-Analysis/Great_data.csv")
 ```
 
 ### Data Comprehension
@@ -26,6 +27,7 @@ df_world <- read.csv("~/Global-Analysis/World_data.csv")
 The datasets was reviewed below to improve our understanding of the dataset
 
 ```{r}
+## Checking out the dataset
 head(df_world)
 colnames(df_world)
 ```
@@ -33,12 +35,15 @@ colnames(df_world)
 Structure of the dataset
 
 ```{r}
+## Looking into the structure of the dataset
 str(df_world)
 ```
 
-Renaming certain columns
+Renaming the columns
 
 ```{r}
+## The columns in the dataset had to be renamed in order to make
+## it easy to conduct certain functions
 df_world <- df_world %>%
   rename(c(Economic_Freedom_Index = Economic.Freedom.Index, 
            Life_Expectancy = Life.Expectancy,
@@ -65,6 +70,7 @@ df_world <- df_world %>%
 Filtering out information
 
 ```{r}
+## Checking out the Business Freedom score over the years
 df_nigeria <- df_world %>% 
   filter(Country == 'Nigeria') %>%
   select(Business_Freedom, Year)
@@ -75,6 +81,7 @@ df_nigeria
 
 Scatter plot function
 
+Creating scatter plot functions to explore the relationship between the indicators
 ```{r}
 ## Human Development Index vs Economic Freedom Index
 scatter1 <- function(df, year) {
@@ -150,6 +157,8 @@ scatter4(df_world, 2019)
 ```
 
 Kernel Density Estimation Plot
+
+Exploring how countries' indicators have been distributed over time
 
 Human Development Index
 
