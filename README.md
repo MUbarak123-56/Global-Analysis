@@ -22,7 +22,7 @@ Graphs were created by using both ggplot2 on R and seaborn on Python. The usage 
 
 ## Web development
 
-The final phase of the project involved the creation of a website use of python packages such as pandas, streamlit, seaborn and matplotlib. With the use of heroku, it was possible to complete the web application. The web application makes it possible for visitors to see how different indicators vary with each other during a specific year. It also makes it possible for visitors to see how continents differ in terms of different indicators. Finally, it provides visitors with the ability to see how a certain country has performed over time according to an indicator.
+The final phase of the project involved the creation of a website use of python packages such as pandas, streamlit, seaborn and matplotlib. With the use of heroku, it was possible to complete the web application. The web application makes it possible for visitors to use drop-down menus and sliders to interact with the charts. One of its major feature is how different indicators vary with one other during a specific year. It also allows visitors to see how continents differ in terms of different indicators. Finally, it provides visitors with the ability to see how a certain country has performed over time according to an indicator.
 
 ### Contact Info
 * Mubarak Ganiyu
