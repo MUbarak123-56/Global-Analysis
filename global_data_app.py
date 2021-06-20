@@ -26,7 +26,8 @@ def run():
     st.header("Global Analysis Charts")
     st.write("Below are different charts showcasing how the indicators fare against each other and how countries/continents perform according to the indicators")
     st.write("Note: Data on some indicators are missing for some years. Hence, the charts will be blank for those years.")
-    st.header("Indicators' Comparison")
+    
+    st.subheader("Indicators' Comparison")
     st.write("This is a chart showcasing how different indicators fare against one another in a specific year.")
     st.write("Use the drop-down menus and the slider below to interact with the chart.")
     indicator1 = st.selectbox("Indicator 1", indicator_list, 3)
@@ -40,7 +41,7 @@ def run():
     ax.set_ylabel(indicator2)
     st.pyplot(fig)
 
-    st.header("Continents' Comparison")
+    st.subheader("Continents' Comparison")
     st.write("This chart highlights the disparities between continents based on different indicators in a specific year.")
     st.write("Use the drop-down menu and the slider below to interact with the chart.")
     indicator3 = st.selectbox("Indicator", indicator_list, 3)
@@ -53,7 +54,7 @@ def run():
     ax2.set_ylabel(indicator3)
     st.pyplot(fig2)
 
-    st.header("Countries' Progress")
+    st.subheader("Countries' Progress")
     st.write("This chart provides a proper insight into how a country has changed over a given period of time according to an indicator.")
     st.write("Use the drop-down menus below to interact with the chart.")
     indicator4 = st.selectbox("Indicator", indicator_list, 16)
