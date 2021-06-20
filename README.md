@@ -19,7 +19,7 @@ Data was collected from The Heritage Foundation, Gapminder Foundation and the Un
 
 ## Exploratory Data Analysis
 
-Graphs were created by using both ggplot2 on R and seaborn on Python. The usage of both systems proved that Python was a more flexible approach for creating charts because it was possible to easily create versatile functions for generating graphs on Jupyter Notebooks. The graphs created on both platforms can be viewed in the Exploratory Data Analysis files in the repository. Building charts were not enough to display the relationships. Hence, Tableau was leveraged to create dashboards that made it easy to interact with the charts. Some of these dashboards reflected different countries' progress over the past 24 years while others focused more on continental comparison. You can check out these dashboards on Tableu public via this link.
+Graphs were created by using both ggplot2 on R and seaborn on Python. The usage of both systems proved that Python was a more flexible approach for creating charts because it was possible to easily create versatile functions for generating graphs on Jupyter Notebooks. The graphs created on both platforms can be viewed in the Exploratory Data Analysis files in the repository. Building charts were not enough to display the relationships. Hence, Tableau was leveraged to create dashboards that made it easy to interact with the charts. Some of these dashboards reflected different countries' progress over the past 24 years while others focused more on continental comparison. You can check out these dashboards on Tableu public via this [link](https://global-prosperity.herokuapp.com/).
 
 ## Web development
 
