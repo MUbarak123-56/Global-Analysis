@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 import seaborn as sns; sns.set(style="dark")
 
-df_world = pd.read_csv("Great_data.csv", encoding = "latin1")
+df_world = pd.read_csv("Great_data.csv")
 indicator_list = ['Life Expectancy', 'Income', 'Population', 'Economic Freedom Index',
                   'Property Rights', 'Government Integrity', 'Judicial Effectiveness', 'Tax Burden',
                   'Government Spending', 'Fiscal Health', 'Business Freedom',
