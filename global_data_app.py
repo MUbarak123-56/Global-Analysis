@@ -33,7 +33,7 @@ def run():
     indicator2 = st.selectbox("Indicator 2", indicator_list, 19)
     year1 = st.slider("Year", 1995, 2019, 2010, 1)
     df = df_world[df_world["Year"] == year1]
-    fig, ax = plt.subplots(figsize=(16,8))
+    fig, ax = plt.subplots(figsize=(12, 6))
     sns.scatterplot(x=indicator1, y=indicator2, data=df, hue="Continent", palette='deep')
     ax.set_title("%s vs %s in %d" % (indicator2,indicator1, year1), fontsize=15)
     ax.set_xlabel(indicator1)
@@ -46,7 +46,7 @@ def run():
     indicator3 = st.selectbox("Indicator", indicator_list, 3)
     year2 = st.slider("Year", 1995, 2019, 2008, 1)
     df2 = df_world[df_world["Year"] == year2]
-    fig2, ax2 = plt.subplots(figsize=(16, 8))
+    fig2, ax2 = plt.subplots(figsize=(12, 6))
     sns.boxplot(x="Continent", y=indicator3, data=df2, hue="Continent", palette="deep")
     ax2.set_title("How Continents differ in terms of %s in %d" %(indicator3, year2), fontsize=15)
     ax2.set_xlabel("Continent")
@@ -59,7 +59,7 @@ def run():
     indicator4 = st.selectbox("Indicator", indicator_list, 16)
     country1 = st.selectbox("Country", list(df_world["Country"].unique()))
     df3 = df_world[df_world["Country"] == country1]
-    fig3, ax3 = plt.subplots(figsize=(16, 8))
+    fig3, ax3 = plt.subplots(figsize=(12, 6))
     sns.lineplot(x="Year", y=indicator4, style="Country", markers="o", hue = "Continent", palette = "deep", data=df3)
     ax3.set_title("%s changes over time in %s" % (indicator4, country1), fontsize=15)
     ax3.set_xlabel("Year")
