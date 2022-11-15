@@ -1,0 +1,81 @@
+---
+title: "Data Wrangling"
+output: pdf_document
+---
+
+# Data Wrangling
+This document showcases how the datasets are wrangled to improve the depth of the variables.
+
+### Load tidyverse
+The tidyverse package was loaded. This package will make it easy to wrangle and clean data.
+```{r}
+## This is the function for loading the tidyverse package
+library(tidyverse)
+```
+
+### Load datasets
+The needed datasets are loaded in the column below.
+```{r, load-data}
+econ_free <- read.csv("~/Global-Analysis/Economic_Freedom_data.csv")
+df_gap <- read.csv("~/Global-Analysis/new_gapminder.csv")
+```
+
+## Combining Datasets
+
+### Transforming the gapminder dataset
+The cell below shows how gapminder was transformed to create a new column.This column will be used to uniquely identify each country during each year.
+```{r}
+## The data type for the year column was transformed into character
+df_gap$char <- as.character(df_gap$year)
+## Another new column was created to duplicate the country information
+df_gap$newcountry <- df_gap$country
+
+## Then, the new country column was combined with the year to
+## create a new column for joining 
+df_gap <- df_gap %>% 
+  unite("country_year", c(newcountry, char), sep = ", ")
+```
+
+### Checking out gapminder dataset
+
+```{r}
+head(df_gap)
+```
+### Transforming the economic indicators index dataset
+
+The cell below shows how economic indicators' dataset were transformed to create a new column.This column will be used to uniquely identify each country during each year.
+
+```{r}
+## The same process that was used to create a country year column
+## was repeated below
+econ_free$char <- as.character(econ_free$Year)
+econ_free$newcountry <- econ_free$Country
+econ_free <- econ_free %>% 
+  unite("country_year", c(newcountry, char), sep = ", ")
+```
+
+### Checking out the dataset
+
+```{r}
+head(econ_free)
+```
+### Joining the two datasets
+The cell below was used to join the two columns using the newly formed identifier country_year.
+```{r}
+## The two datasets were joined together using the column 
+## country_year to form a new dataset
+df_world <- inner_join(df_gap, econ_free, by = "country_year")
+
+## Some columns were left out below
+df_world <- df_world %>% 
+  select(-c(Country, Year))
+```
+
+### Saving the datasets
+
+```{r}
+## The dataset was saved into a new .csv file
+write.csv(df_world, "~/Global-Analysis/New_world.csv")
+```
+
+

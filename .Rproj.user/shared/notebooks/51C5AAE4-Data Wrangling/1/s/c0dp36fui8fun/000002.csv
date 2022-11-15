@@ -1,0 +1,2 @@
+"0","## The dataset was saved into a new .csv file"
+"0","write.csv(df_world, ""~/Global-Analysis/New_world.csv"")"

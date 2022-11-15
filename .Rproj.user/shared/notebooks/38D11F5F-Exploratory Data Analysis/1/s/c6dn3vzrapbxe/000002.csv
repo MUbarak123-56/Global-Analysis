@@ -1,0 +1,6 @@
+"0","df_world %>% "
+"0","  filter(Year == 2019) %>% "
+"0","  ggplot() + "
+"0","  geom_boxplot(aes(x = Continent, y = Human_Development_Index,"
+"0","                   color = Continent)) +"
+"0","  labs(title = ""How continents differ based on Human Development Index in 2019"")"

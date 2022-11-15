@@ -1,0 +1,7 @@
+"0","df_world %>% "
+"0","  filter(Year == 2019) %>% "
+"0","  ggplot() + "
+"0","  geom_boxplot(aes(x = Continent, y = Economic_Freedom_Index,"
+"0","                   color = Continent)) +"
+"0","  labs(title = ""How continents differ based on Economic Freedom Index in 2019"", "
+"0","       y = ""Economic Freedom Index"")"

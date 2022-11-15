@@ -1,0 +1,6 @@
+"0","## The same process that was used to create a country year column"
+"0","## was repeated below"
+"0","econ_free$char <- as.character(econ_free$Year)"
+"0","econ_free$newcountry <- econ_free$Country"
+"0","econ_free <- econ_free %>% "
+"0","  unite(""country_year"", c(newcountry, char), sep = "", "")"

@@ -1,0 +1,5 @@
+"0","## Checking out the Business Freedom score over the years"
+"0","df_nigeria <- df_world %>% "
+"0","  filter(Country == 'Nigeria') %>%"
+"0","  select(Business_Freedom, Year)"
+"0","df_nigeria"

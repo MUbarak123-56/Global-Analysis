@@ -1,0 +1,2 @@
+"0","econ_free <- read.csv(""~/Global-Analysis/Economic_Freedom_data.csv"")"
+"0","df_gap <- read.csv(""~/Global-Analysis/new_gapminder.csv"")"

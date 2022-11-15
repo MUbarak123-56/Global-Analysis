@@ -1,0 +1,7 @@
+"0","## The two datasets were joined together using the column "
+"0","## country_year to form a new dataset"
+"0","df_world <- inner_join(df_gap, econ_free, by = ""country_year"")"
+"0",""
+"0","## Some columns were left out below"
+"0","df_world <- df_world %>% "
+"0","  select(-c(Country, Year))"
