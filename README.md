@@ -1,5 +1,7 @@
 # Global-Analysis
 
+[![View on Streamlit/Heroku](https://img.shields.io/badge/Streamlit-View%20on%20Streamlit%20app-ff69b4?logo=streamlit)](https://global-prosperity.herokuapp.com/)
+
 ## Introduction
 
 Humanity has experienced tremendous growth over the past two centuries due to the power of innovation in different areas such as medicine, business and engineering. This immense growth has led us to live in a very prosperous era. Different organizations have sought to collect data in order to examine prosperity.
